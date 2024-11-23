@@ -3,30 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies and TV Shows</title>
-    <script src='//niphaumeenses.net/vignette.min.js' data-zone='8551767' data-sdk='show_8551767'></script>
+    <title>Movie Category</title>
+    <script>
+        let startTime = Date.now();
+        let timeSpent = 0;
+        let userIsActive = true;
+
+        // Track time every second
+        setInterval(() => {
+            if (userIsActive) {
+                timeSpent = (Date.now() - startTime) / 1000; // time in seconds
+            }
+        }, 1000);
+
+        // Function to unlock content if user stays for at least 15 seconds
+        function unlockContent() {
+            if (timeSpent >= 15) {
+                alert("You can now unlock content!");
+                // You can send an API request or store the unlock info
+            } else {
+                alert("You did not stay long enough.");
+            }
+        }
+
+        // Listen for close events or tab switching
+        window.onbeforeunload = function () {
+            if (timeSpent < 15) {
+                alert("You did not stay long enough to unlock content.");
+            }
+        }
+    </script>
 </head>
 <body>
-    <div class="category" id="action">
-        <h2>Action Movies</h2>
-        <div class="movie">
-            <h3 class="title">Action Movie 1</h3>
-            <span class="year">2023</span>
-            <span class="rating">4.5</span>
-            <a class="trailer" href="https://www.example.com/trailer1">Watch Trailer</a>
-        </div>
-        <div class="movie">
-            <h3 class="title">Action Movie 2</h3>
-            <span class="year">2022</span>
-            <span class="rating">4.0</span>
-            <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
-        </div>
-    </div>
-
-    <!-- Insert the ad after the movie list -->
-    <script src='//niphaumeense.net/vignette.min.js' data-zone='8551767' data-sdk='show_8551767'></script>
-    <script>
-    show_8551767();  // Trigger the ad display
-    </script>
+    <h1>Welcome to the movie category page</h1>
+    <p>Stay on this page for at least 15 seconds to unlock content.</p>
+    <button onclick="unlockContent()">Unlock Content</button>
 </body>
 </html>
