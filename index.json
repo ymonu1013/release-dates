@@ -1,0 +1,66 @@
+{
+    "action": [
+        {
+            "title": "Action Movie 1",
+            "year": 2023,
+            "rating": 4.5,
+            "trailer": "https://www.example.com/trailer1",
+            "description": "An epic action-packed movie with intense fight scenes."
+        },
+        {
+            "title": "Action Movie 2",
+            "year": 2022,
+            "rating": 4.0,
+            "trailer": "https://www.example.com/trailer2",
+            "description": "A thrilling action movie with a plot twist."
+        }
+    ],
+    "comedy": [
+        {
+            "title": "Comedy Movie 1",
+            "year": 2023,
+            "rating": 4.2,
+            "trailer": "https://www.example.com/trailer3",
+            "description": "A hilarious comedy about unexpected events."
+        },
+        {
+            "title": "Comedy Movie 2",
+            "year": 2021,
+            "rating": 3.8,
+            "trailer": "https://www.example.com/trailer4",
+            "description": "A romantic comedy filled with funny situations."
+        }
+    ],
+    "drama": [
+        {
+            "title": "Drama Movie 1",
+            "year": 2022,
+            "rating": 4.3,
+            "trailer": "https://www.example.com/trailer5",
+            "description": "A deeply emotional drama that touches the heart."
+        },
+        {
+            "title": "Drama Movie 2",
+            "year": 2021,
+            "rating": 4.1,
+            "trailer": "https://www.example.com/trailer6",
+            "description": "A drama revolving around family and loss."
+        }
+    ],
+    "horror": [
+        {
+            "title": "Horror Movie 1",
+            "year": 2023,
+            "rating": 4.7,
+            "trailer": "https://www.example.com/trailer7",
+            "description": "A spine-chilling horror movie that will keep you at the edge of your seat."
+        },
+        {
+            "title": "Horror Movie 2",
+            "year": 2021,
+            "rating": 4.4,
+            "trailer": "https://www.example.com/trailer8",
+            "description": "A supernatural horror film about haunted houses."
+        }
+    ]
+}
