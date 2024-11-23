@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies and TV Shows</title>
+    <script src='//niphaumeenses.net/vignette.min.js' data-zone='8548688' data-sdk='show_8548688'></script>
 </head>
 <body>
     <div class="category" id="action">
@@ -20,7 +21,11 @@
             <span class="rating">4.0</span>
             <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
         </div>
+        
+        <!-- Button to trigger the rewarded ad -->
+        <button id="showAdButton">Watch Ad for Reward</button>
     </div>
+
     <div class="category" id="comedy">
         <h2>Comedy Movies</h2>
         <div class="movie">
@@ -30,5 +35,15 @@
             <a class="trailer" href="https://www.example.com/trailer3">Watch Trailer</a>
         </div>
     </div>
+
+    <script>
+        // Function to show the ad when the button is clicked
+        document.getElementById('showAdButton').addEventListener('click', () => {
+            show_8548688().then(() => {
+                alert('You have seen an ad and earned a reward!');
+                // Add your reward logic here
+            });
+        });
+    </script>
 </body>
 </html>
