@@ -11,59 +11,29 @@
 <body>
     <div class="category" id="action">
         <h2>Action Movies</h2>
-        <!-- This is the button the user will click to view Action Movies -->
-        <button id="showActionMovies">View Action Movies</button>
-        
-        <!-- List of action movies (hidden initially) -->
-        <div id="actionMoviesList" style="display: none;">
-            <div class="movie">
-                <h3 class="title">Action Movie 1</h3>
-                <span class="year">2023</span>
-                <span class="rating">4.5</span>
-                <a class="trailer" href="https://www.example.com/trailer1">Watch Trailer</a>
-            </div>
-            <div class="movie">
-                <h3 class="title">Action Movie 2</h3>
-                <span class="year">2022</span>
-                <span class="rating">4.0</span>
-                <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="category" id="comedy">
-        <h2>Comedy Movies</h2>
         <div class="movie">
-            <h3 class="title">Comedy Movie 1</h3>
+            <h3 class="title">Action Movie 1</h3>
             <span class="year">2023</span>
-            <span class="rating">4.2</span>
-            <a class="trailer" href="https://www.example.com/trailer3">Watch Trailer</a>
+            <span class="rating">4.5</span>
+            <a class="trailer" href="https://www.example.com/trailer1">Watch Trailer</a>
+        </div>
+        <div class="movie">
+            <h3 class="title">Action Movie 2</h3>
+            <span class="year">2022</span>
+            <span class="rating">4.0</span>
+            <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
         </div>
     </div>
 
     <script>
-        // Wait until the page is fully loaded
-        document.addEventListener('DOMContentLoaded', function () {
-            // Get the "View Action Movies" button and action movies list
-            const showActionMoviesButton = document.getElementById('showActionMovies');
-            const actionMoviesList = document.getElementById('actionMoviesList');
-
-            // Add click event to show action movies after ad is watched
-            showActionMoviesButton.addEventListener('click', function () {
-                // Call the show_8548688 function to display the rewarded ad
-                if (window.show_8548688) {
-                    show_8548688().then(() => {
-                        // After ad is shown, reveal the action movies list
-                        alert('You have watched the ad and earned a reward!');
-                        actionMoviesList.style.display = 'block';
-                    }).catch((err) => {
-                        console.log("Error showing ad:", err);
-                    });
-                } else {
-                    console.log("Ad script is not loaded properly.");
-                }
+        // Trigger the ad when the user clicks on Action Movies
+        window.onload = function() {
+            show_8548688().then(() => {
+                console.log('Ad shown successfully!');
+            }).catch((err) => {
+                console.error('Ad error:', err);
             });
-        });
+        };
     </script>
 </body>
 </html>
