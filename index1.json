@@ -1,35 +1,9 @@
 {
     "action": [
-        {
-            "title": "Die Hard",
-            "year": 1988,
-            "rating": 8.2
-        },
-        {
-            "title": "Mad Max: Fury Road",
-            "year": 2015,
-            "rating": 8.1
-        }
+        {"title": "Action Movie 1", "year": 2023, "rating": 4.5},
+        {"title": "Action Movie 2", "year": 2022, "rating": 4.0}
     ],
     "comedy": [
-        {
-            "title": "The Hangover",
-            "year": 2009,
-            "rating": 7.7
-        }
-    ],
-    "drama": [
-        {
-            "title": "The Shawshank Redemption",
-            "year": 1994,
-            "rating": 9.3
-        }
-    ],
-    "horror": [
-        {
-            "title": "The Shining",
-            "year": 1980,
-            "rating": 8.4
-        }
+        {"title": "Comedy Movie 1", "year": 2023, "rating": 4.2}
     ]
 }
