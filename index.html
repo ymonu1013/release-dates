@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies and TV Shows</title>
     <style>
-        /* Basic style to make sure the button is visible */
-        #showAdButton {
+        /* Basic style for the button */
+        #actionMoviesButton {
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
@@ -16,30 +16,37 @@
             cursor: pointer;
         }
 
-        #showAdButton:hover {
+        #actionMoviesButton:hover {
             background-color: #45a049;
         }
+
+        /* Hidden action movies initially */
+        #actionMoviesList {
+            display: none;
+        }
     </style>
-    <script src='//niphaumeenses.net/vignette.min.js' data-zone='8548688' data-sdk='show_8548688'></script>
 </head>
 <body>
     <div class="category" id="action">
         <h2>Action Movies</h2>
-        <div class="movie">
-            <h3 class="title">Action Movie 1</h3>
-            <span class="year">2023</span>
-            <span class="rating">4.5</span>
-            <a class="trailer" href="https://www.example.com/trailer1">Watch Trailer</a>
-        </div>
-        <div class="movie">
-            <h3 class="title">Action Movie 2</h3>
-            <span class="year">2022</span>
-            <span class="rating">4.0</span>
-            <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
-        </div>
+        <!-- This is the button that will show the ad when clicked -->
+        <button id="actionMoviesButton">View Action Movies</button>
 
-        <!-- Button to trigger the rewarded ad -->
-        <button id="showAdButton">Watch Ad for Reward</button>
+        <!-- List of action movies (hidden initially) -->
+        <div id="actionMoviesList">
+            <div class="movie">
+                <h3 class="title">Action Movie 1</h3>
+                <span class="year">2023</span>
+                <span class="rating">4.5</span>
+                <a class="trailer" href="https://www.example.com/trailer1">Watch Trailer</a>
+            </div>
+            <div class="movie">
+                <h3 class="title">Action Movie 2</h3>
+                <span class="year">2022</span>
+                <span class="rating">4.0</span>
+                <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
+            </div>
+        </div>
     </div>
 
     <div class="category" id="comedy">
@@ -55,28 +62,52 @@
     <script>
         // Function to dynamically load the ad script
         function loadAdScript() {
+            if (window.show_8548688) {
+                console.log("Ad script already loaded.");
+                return; // Avoid loading the script again if it's already loaded
+            }
+
+            console.log("Loading ad script...");
             const tag = document.createElement('script');
             tag.src = '//niphaumeenses.net/vignette.min.js';
             tag.dataset.zone = '8548688';
             tag.dataset.sdk = 'show_8548688';
             document.body.appendChild(tag);
+
+            tag.onload = function() {
+                console.log("Ad script loaded successfully.");
+            };
+
+            tag.onerror = function() {
+                console.log("Error loading ad script.");
+            };
         }
 
-        // Wait until the page is fully loaded before showing the button
-        window.addEventListener('load', function() {
-            // Ensure the button is visible after the page loads
-            document.getElementById('showAdButton').style.display = 'block';
+        // Wait until the page is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Page loaded.");
+            
+            const actionMoviesButton = document.getElementById('actionMoviesButton');
+            const actionMoviesList = document.getElementById('actionMoviesList');
 
-            // Add event listener to the button
-            document.getElementById('showAdButton').addEventListener('click', function() {
+            // Add event listener to the Action Movies button
+            actionMoviesButton.addEventListener('click', function() {
+                console.log("Action Movies button clicked.");
+
+                // Load the ad script when button is clicked
                 loadAdScript();
 
                 // Check when the script has loaded and show the ad
                 const interval = setInterval(() => {
                     if (window.show_8548688) {
                         clearInterval(interval);
+                        console.log("Showing ad...");
                         show_8548688().then(() => {
                             alert('You have seen an ad and earned a reward!');
+                            // Once the ad is shown, display the action movies
+                            actionMoviesList.style.display = 'block';
+                        }).catch((err) => {
+                            console.log("Error showing ad:", err);
                         });
                     }
                 }, 100);
