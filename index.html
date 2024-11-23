@@ -1,11 +1,8 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies and TV Shows</title>
-    <!-- Ad script tag -->
-    <script src="//sampledomain.com/vignette.min.js" data-zone="8551767" data-sdk="show_8551767"></script>
 </head>
 <body>
     <div class="category" id="action">
@@ -23,12 +20,6 @@
             <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
         </div>
     </div>
-
-    <!-- Place for Ad: After the 'Action Movies' section -->
-    <div id="ad-container">
-        <button onclick="showAd()">Show Rewarded Ad</button>
-    </div>
-
     <div class="category" id="comedy">
         <h2>Comedy Movies</h2>
         <div class="movie">
@@ -38,18 +29,5 @@
             <a class="trailer" href="https://www.example.com/trailer3">Watch Trailer</a>
         </div>
     </div>
-
-    <script>
-        // Function to show the rewarded ad
-        function showAd() {
-            show_8551767()  // Replace "XXXXXXX" with your actual ad zone
-                .then(function() {
-                    console.log("Ad displayed successfully");
-                })
-                .catch(function(error) {
-                    console.error("Error displaying ad: ", error);
-                });
-        }
-    </script>
 </body>
 </html>
