@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies & TV Series Browser</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #000000;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 16px;
+            background-color: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+        }
+        
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            padding: 16px;
+        }
+        
+        .month-card {
+            background-color: var(--tg-theme-bg-color);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .month-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .month-card h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        .content-section {
+            margin-top: 20px;
+            padding: 16px;
+        }
+        
+        .content-card {
+            background-color: var(--tg-theme-bg-color);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .content-card h4 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+        }
+        
+        .trailer-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin-top: 12px;
+        }
+        
+        .trailer-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .back-button {
+            background-color: var(--tg-theme-button-color, #3390ec);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 16px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="backButton" class="back-button" onclick="showMonths()">← Back to Months</button>
+    
+    <div id="monthGrid" class="month-grid">
+        <!-- Months will be populated here -->
+    </div>
+    
+    <div id="contentSection" class="content-section" style="display: none">
+        <!-- Content will be shown here -->
+    </div>
+
+    <script>
+        // Initialize Telegram WebApp
+        const webapp = window.Telegram.WebApp;
+        webapp.ready();
+        webapp.expand();
+
+        // Sample data structure - Replace with your actual data
+        const contentData = {
+            '2024': {
+                'January': [
+                    {
+                        title: 'The Movie Title',
+                        type: 'Movie',
+                        description: 'A fantastic new release',
+                        trailerUrl: 'https://www.youtube.com/embed/sample1'
+                    }
+                ],
+                'February': [
+                    {
+                        title: 'Amazing TV Show',
+                        type: 'TV Series',
+                        description: 'Brand new season',
+                        trailerUrl: 'https://www.youtube.com/embed/sample2'
+                    }
+                ]
+            }
+        };
+
+        // Create month cards
+        function createMonthGrid() {
+            const monthGrid = document.getElementById('monthGrid');
+            const currentYear = '2024'; // You can make this dynamic
+            const months = Object.keys(contentData[currentYear]);
+            
+            months.forEach(month => {
+                const card = document.createElement('div');
+                card.className = 'month-card';
+                card.onclick = () => showContent(currentYear, month);
+                
+                const title = document.createElement('h3');
+                title.textContent = month;
+                
+                const count = contentData[currentYear][month].length;
+                const subtitle = document.createElement('p');
+                subtitle.textContent = `${count} items`;
+                
+                card.appendChild(title);
+                card.appendChild(subtitle);
+                monthGrid.appendChild(card);
+            });
+        }
+
+        function showContent(year, month) {
+            const monthGrid = document.getElementById('monthGrid');
+            const contentSection = document.getElementById('contentSection');
+            const backButton = document.getElementById('backButton');
+            
+            monthGrid.style.display = 'none';
+            contentSection.style.display = 'block';
+            backButton.style.display = 'block';
+            
+            const content = contentData[year][month];
+            let html = `<h2>${month} ${year}</h2>`;
+            
+            content.forEach(item => {
+                html += `
+                    <div class="content-card">
+                        <h4>${item.title}</h4>
+                        <div class="meta">${item.type}</div>
+                        <p>${item.description}</p>
+                        <div class="trailer-container">
+                            <iframe src="${item.trailerUrl}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            contentSection.innerHTML = html;
+        }
+
+        function showMonths() {
+            const monthGrid = document.getElementById('monthGrid');
+            const contentSection = document.getElementById('contentSection');
+            const backButton = document.getElementById('backButton');
+            
+            monthGrid.style.display = 'grid';
+            contentSection.style.display = 'none';
+            backButton.style.display = 'none';
+        }
+
+        // Initialize the app
+        createMonthGrid();
+    </script>
+</body>
+</html>
