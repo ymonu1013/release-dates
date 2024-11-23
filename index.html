@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies and TV Shows</title>
-
-    <!-- Ad Script - Integrated into the head -->
-   <script src='//niphaumeenses.net/vignette.min.js' data-zone='8551767' data-sdk='show_8551767'></script>
+    <!-- Ad Script for Action Movies -->
+    <script src='//niphaumeenses.net/vignette.min.js' data-zone='8551767' data-sdk='show_8551767'></script>
 </head>
 <body>
     <div class="category" id="action">
@@ -24,16 +23,14 @@
             <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
         </div>
     </div>
-
-    <script>
-        // Trigger the ad when the user clicks on Action Movies
-        window.onload = function() {
-            show_8551767().then(() => {
-                console.log('Ad shown successfully!');
-            }).catch((err) => {
-                console.error('Ad error:', err);
-            });
-        };
-    </script>
+    <div class="category" id="comedy">
+        <h2>Comedy Movies</h2>
+        <div class="movie">
+            <h3 class="title">Comedy Movie 1</h3>
+            <span class="year">2023</span>
+            <span class="rating">4.2</span>
+            <a class="trailer" href="https://www.example.com/trailer3">Watch Trailer</a>
+        </div>
+    </div>
 </body>
 </html>
