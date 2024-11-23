@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies and TV Shows</title>
+    <style>
+        /* Basic style to make sure the button is visible */
+        #showAdButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #showAdButton:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <div class="category" id="action">
@@ -36,9 +52,8 @@
     </div>
 
     <script>
-        // Dynamically load the ad script when needed
+        // Function to dynamically load the ad script
         function loadAdScript() {
-            if (window.show_8548688) return; // Check if the ad script is already loaded
             const tag = document.createElement('script');
             tag.src = '//niphaumeenses.net/vignette.min.js';
             tag.dataset.zone = '8548688';
@@ -46,20 +61,25 @@
             document.body.appendChild(tag);
         }
 
-        // Function to show the ad when the button is clicked
-        document.getElementById('showAdButton').addEventListener('click', () => {
-            loadAdScript(); // Ensure the script is loaded
+        // Wait until the page is fully loaded before showing the button
+        window.addEventListener('load', function() {
+            // Ensure the button is visible after the page loads
+            document.getElementById('showAdButton').style.display = 'block';
 
-            // Wait for the script to be loaded and show the ad
-            const interval = setInterval(() => {
-                if (window.show_8548688) {
-                    clearInterval(interval);
-                    show_8548688().then(() => {
-                        alert('You have seen an ad and earned a reward!');
-                        // Add your reward logic here
-                    });
-                }
-            }, 100);
+            // Add event listener to the button
+            document.getElementById('showAdButton').addEventListener('click', function() {
+                loadAdScript();
+
+                // Check when the script has loaded and show the ad
+                const interval = setInterval(() => {
+                    if (window.show_8548688) {
+                        clearInterval(interval);
+                        show_8548688().then(() => {
+                            alert('You have seen an ad and earned a reward!');
+                        });
+                    }
+                }, 100);
+            });
         });
     </script>
 </body>
