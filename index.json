@@ -1,73 +1,34 @@
-// Dynamically create the <script> tag to load the ad SDK
-const script = document.createElement('script');
-script.src = '//niphaumeenses.net/vignette.min.js'; // Replace with your ad network URL
-script.dataset.zone = '8548688';  // Replace with your actual zone
-script.dataset.sdk = 'show_8548688';  // Replace with your actual SDK function
-document.head.appendChild(script);  // This will add the script to the <head> section of the page
-
-// Wait for the script to load and then call the ad
-script.onload = () => {
-    console.log('Ad SDK loaded successfully');
-};
-
-// Example function to show the rewarded ad when triggered
-function showAd() {
-    // Check if the SDK function is available
-    if (window.show_8548688) {
-        window.show_8548688().then(() => {
-            alert('You have watched the ad and earned a reward!');
-        }).catch((error) => {
-            console.error('Error showing ad:', error);
-        });
-    } else {
-        console.error('Ad SDK not loaded yet');
-    }
-}
-
-// Example of how you might add an ad button in your app
-const showAdButton = document.createElement('button');
-showAdButton.innerHTML = 'Show Rewarded Ad';
-showAdButton.onclick = showAd;
-document.body.appendChild(showAdButton);
-
-const moviesData = {
-    "action": [
-        { "title": "Action Movie 1", "year": 2023, "rating": 4.5, "trailer": "https://www.example.com/trailer1", "description": "An epic action-packed movie with intense fight scenes." },
-        { "title": "Action Movie 2", "year": 2022, "rating": 4.0, "trailer": "https://www.example.com/trailer2", "description": "A thrilling action movie with a plot twist." }
-    ],
-    "comedy": [
-        { "title": "Comedy Movie 1", "year": 2023, "rating": 4.2, "trailer": "https://www.example.com/trailer3", "description": "A hilarious comedy about unexpected events." },
-        { "title": "Comedy Movie 2", "year": 2021, "rating": 3.8, "trailer": "https://www.example.com/trailer4", "description": "A romantic comedy filled with funny situations." }
-    ],
-    "drama": [
-        { "title": "Drama Movie 1", "year": 2022, "rating": 4.3, "trailer": "https://www.example.com/trailer5", "description": "A deeply emotional drama that touches the heart." },
-        { "title": "Drama Movie 2", "year": 2021, "rating": 4.1, "trailer": "https://www.example.com/trailer6", "description": "A drama revolving around family and loss." }
-    ],
-    "horror": [
-        { "title": "Horror Movie 1", "year": 2023, "rating": 4.7, "trailer": "https://www.example.com/trailer7", "description": "A spine-chilling horror movie that will keep you at the edge of your seat." },
-        { "title": "Horror Movie 2", "year": 2021, "rating": 4.4, "trailer": "https://www.example.com/trailer8", "description": "A supernatural horror film about haunted houses." }
-    ]
-};
-
-// Function to display movie list dynamically
-function displayMovies() {
-    const movieContainer = document.getElementById('movieList');
-    moviesData.action.forEach(movie => {
-        const movieDiv = document.createElement('div');
-        movieDiv.innerHTML = `
-            <h3>${movie.title} (${movie.year})</h3>
-            <p>Rating: ${movie.rating}</p>
-            <p>${movie.description}</p>
-            <a href="${movie.trailer}" target="_blank">Watch Trailer</a>
-        `;
-        movieContainer.appendChild(movieDiv);
-        
-        // Add a button to show the ad for each movie
-        const adButton = document.createElement('button');
-        adButton.innerText = 'Watch Ad to Earn Reward';
-        adButton.onclick = showAd;
-        movieDiv.appendChild(adButton);
-    });
-}
-
-document.addEventListener('DOMContentLoaded', displayMovies);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies and TV Shows</title>
+</head>
+<body>
+    <div class="category" id="action">
+        <h2>Action Movies</h2>
+        <div class="movie">
+            <h3 class="title">Action Movie 1</h3>
+            <span class="year">2023</span>
+            <span class="rating">4.5</span>
+            <a class="trailer" href="https://www.example.com/trailer1">Watch Trailer</a>
+        </div>
+        <div class="movie">
+            <h3 class="title">Action Movie 2</h3>
+            <span class="year">2022</span>
+            <span class="rating">4.0</span>
+            <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
+        </div>
+    </div>
+    <div class="category" id="comedy">
+        <h2>Comedy Movies</h2>
+        <div class="movie">
+            <h3 class="title">Comedy Movie 1</h3>
+            <span class="year">2023</span>
+            <span class="rating">4.2</span>
+            <a class="trailer" href="https://www.example.com/trailer3">Watch Trailer</a>
+        </div>
+    </div>
+</body>
+</html>
