@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies and TV Shows</title>
-    <script src='//niphaumeenses.net/vignette.min.js' data-zone='8548688' data-sdk='show_8548688'></script>
 </head>
 <body>
     <div class="category" id="action">
@@ -21,7 +20,7 @@
             <span class="rating">4.0</span>
             <a class="trailer" href="https://www.example.com/trailer2">Watch Trailer</a>
         </div>
-        
+
         <!-- Button to trigger the rewarded ad -->
         <button id="showAdButton">Watch Ad for Reward</button>
     </div>
@@ -37,12 +36,30 @@
     </div>
 
     <script>
+        // Dynamically load the ad script when needed
+        function loadAdScript() {
+            if (window.show_8548688) return; // Check if the ad script is already loaded
+            const tag = document.createElement('script');
+            tag.src = '//niphaumeenses.net/vignette.min.js';
+            tag.dataset.zone = '8548688';
+            tag.dataset.sdk = 'show_8548688';
+            document.body.appendChild(tag);
+        }
+
         // Function to show the ad when the button is clicked
         document.getElementById('showAdButton').addEventListener('click', () => {
-            show_8548688().then(() => {
-                alert('You have seen an ad and earned a reward!');
-                // Add your reward logic here
-            });
+            loadAdScript(); // Ensure the script is loaded
+
+            // Wait for the script to be loaded and show the ad
+            const interval = setInterval(() => {
+                if (window.show_8548688) {
+                    clearInterval(interval);
+                    show_8548688().then(() => {
+                        alert('You have seen an ad and earned a reward!');
+                        // Add your reward logic here
+                    });
+                }
+            }, 100);
         });
     </script>
 </body>
